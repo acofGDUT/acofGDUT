@@ -1,5 +1,5 @@
 ### Hi there 👋
-
+我叫龙新超，来自湖南，是计算机科学与技术大三的一名学生，平时喜欢打游戏，听歌（Eason的歌曲），有时间还会去健身。
 <!--
 **acofGDUT/acofGDUT** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
