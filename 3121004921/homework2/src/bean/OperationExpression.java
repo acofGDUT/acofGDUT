@@ -14,6 +14,10 @@ public class OperationExpression {
         this.res = res;
     }
 
+    public List getList() {
+        return list;
+    }
+
     public void setList(List list) {
         this.list = list;
     }

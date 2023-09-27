@@ -11,8 +11,8 @@ public class CheckService {
 	 */
 	public static Map<String,String> Check(String checked,String answer) throws IOException{
 		Map<String,String> m = new HashMap<String,String>();
-		String e = "";
-		String c = "";
+		String error = "";
+		String correct = "";
 		int en = 0;
 		int cn = 0;
 		
@@ -34,31 +34,31 @@ public class CheckService {
 			if(!str1.trim().equals(str2.trim())){
 //				System.out.println(str1);
 				String[] str = str1.split("\\.");
-				e = e + str[0]+ ",";
+				error = error + str[0]+ ",";
 				en ++ ;
 			}else {
 //				System.out.println(str1);
 				String[] str = str1.split("\\.");
-				c = c + str[0] + ",";
+				correct = correct + str[0] + ",";
 				cn ++;
 			}
 			
 		}
 		
-		if(e.equals("")){
-			e = "Wrong: " + en + "";
+		if(error.equals("")){
+			error = "Wrong: " + en + "";
 		}else {
-			e = "Wrong: " + en + "(" + e.substring(0,e.length()-1) + ")";
+			error = "Wrong: " + en + "(" + error.substring(0,error.length()-1) + ")";
 		}
-		if(c.equals("")){
-			c = "Correct: " + cn + "";
+		if(correct.equals("")){
+			correct = "Correct: " + cn + "";
 		}else {
-			c = "Correct: " + cn + "("+c.substring(0, c.length()-1)+")";
+			correct = "Correct: " + cn + "("+correct.substring(0, correct.length()-1)+")";
 		}
 //		System.out.println(e);
-//		System.out.println(c);
-		m.put("wrong", e);
-		m.put("c", c);
+//		System.out.println(correct);
+		m.put("wrong", error);
+		m.put("correct", correct);
 		return m;
 		}
 	
