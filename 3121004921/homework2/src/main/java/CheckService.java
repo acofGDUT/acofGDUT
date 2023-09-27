@@ -11,16 +11,16 @@ public class CheckService {
 	 */
 	public static Map<String,String> Check(String checked,String answer) throws IOException{
 		Map<String,String> m = new HashMap<String,String>();
-		String error = "";
-		String correct = "";
-		int errornum = 0;
-		int correctnum = 0;
+		String e = "";
+		String c = "";
+		int en = 0;
+		int cn = 0;
 		
 		String str1 = "";
 		String str2 = "";
 		
-//		checked = "D:\\资料\\1.txt";
-//		answer = "D:\\资料\\2.txt";
+//		checked = "1.txt";
+//		answer = "2.txt";
 		File checkedfile=new File(checked);
 		FileInputStream input1=new FileInputStream(checkedfile);
 		BufferedReader reader1=new BufferedReader(new InputStreamReader(input1));
@@ -34,31 +34,31 @@ public class CheckService {
 			if(!str1.trim().equals(str2.trim())){
 //				System.out.println(str1);
 				String[] str = str1.split("\\.");
-				error = error + str[0]+ ",";
-				errornum ++ ;
+				e = e + str[0]+ ",";
+				en ++ ;
 			}else {
 //				System.out.println(str1);
 				String[] str = str1.split("\\.");
-				correct = correct + str[0] + ",";
-				correctnum ++;
+				c = c + str[0] + ",";
+				cn ++;
 			}
 			
 		}
 		
-		if(error.equals("")){
-			error = "Wrong: " + errornum + "";
+		if(e.equals("")){
+			e = "Wrong: " + en + "";
 		}else {
-			error = "Wrong: " + errornum + "(" + error.substring(0,error.length()-1) + ")";
+			e = "Wrong: " + en + "(" + e.substring(0,e.length()-1) + ")";
 		}
-		if(correct.equals("")){
-			correct = "Correct: " + correctnum + "";
+		if(c.equals("")){
+			c = "Correct: " + cn + "";
 		}else {
-			correct = "Correct: " + correctnum + "("+correct.substring(0, correct.length()-1)+")";
+			c = "Correct: " + cn + "("+c.substring(0, c.length()-1)+")";
 		}
-//		System.out.println(error);
-//		System.out.println(correct);
-		m.put("wrong", error);
-		m.put("correct", correct);
+//		System.out.println(e);
+//		System.out.println(c);
+		m.put("wrong", e);
+		m.put("c", c);
 		return m;
 		}
 	

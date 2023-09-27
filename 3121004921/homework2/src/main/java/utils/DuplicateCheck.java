@@ -1,6 +1,5 @@
 package utils;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -11,7 +10,7 @@ public class DuplicateCheck {
         Iterator it = allList.iterator();
         while (it.hasNext()){
             List L = (List) it.next();
-            if(CheckList(l,L)) return true;
+            if(CL(l,L)) return true;
         }
         return false;
     }
@@ -20,8 +19,7 @@ public class DuplicateCheck {
     *判断两个String类型的List是否完全相同
     *大小一样，所有元素互相含有，元素顺序可以不一致
     */
-    //l1是l的形参，l2是allList中某个元素的形参
-    boolean CheckList(List l1,List l2){
+    boolean CL(List l1, List l2){
 
         if (l1 == l2) {
             return true;

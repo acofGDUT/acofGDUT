@@ -36,10 +36,7 @@ public class OperationPro {
     	}else {
     		System.out.println("请按规格输入参数 ");
     		System.out.println("说明参数1：-n [设置题目个数] -r [设置题目中数值的范围]");
-    		System.out.println("数值范围指自然数、真分数和真分数分母");
     		System.out.println("说明参数2：-e [<exercisefile>.txt] -a [<answerfile>.txt]");
-    		System.out.println("参数2为检查文件答案是否正确的指令");
-    		System.out.println("请按规格输入参数");
     	}
 		
 
@@ -60,29 +57,29 @@ public class OperationPro {
 //			bo.write(date.getBytes());
 //			bo.write("\r\n".getBytes());
 
-			getExpression gExp = new getExpression();
-			DuplicateCheck check = new DuplicateCheck();
+			getExpression gE = new getExpression();
+			DuplicateCheck c = new DuplicateCheck();
 			OperationExpression[] e = new OperationExpression[num];
 			List L = new ArrayList();
 			for (int i = 0; i<num; i++){
 				e[i] = new OperationExpression(null,null,null);
 				List l;
-				while ( (l = gExp.getExp(e[i],limit) )==null){
+				while ( (l = gE.getExp(e[i],limit) )==null){
 				}
-				while(check.DuCheck(l,L)){
+				while(c.DuCheck(l,L)){
 					System.out.println("重复");
-					l = gExp.getExp(e[i],limit);//重复则重新生成表达式
+					l = gE.getExp(e[i],limit);//重复则重新生成表达式
 				}
 
 				System.out.println(l);
 				L.add(l);
 
 				bo.write((i+".").getBytes());
-				bo.write((String.join("",e[i].getStringList())+"=").getBytes());
+				bo.write((String.join("",e[i].getSl())+"=").getBytes());
 				bo.write("\r\n".getBytes());
 
 				bo2.write((i+".").getBytes());
-				bo2.write((String.join("",e[i].getStringList())+"="+e[i].getRes().toString()).getBytes());
+				bo2.write((String.join("",e[i].getSl())+"="+e[i].getRes().toString()).getBytes());
 				bo2.write("\r\n".getBytes());
 
 			}

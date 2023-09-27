@@ -34,13 +34,12 @@ public class getExpression {
             return null;
         }
         e.setRes(f);
-        e.setStringList(stringList);
+        e.setSl(stringList);
         return stringList;
     }
 
     static void express(OperationExpression e,List l,List stringList,int limit){
         Fraction f = new Fraction(r.nextBoolean(),limit);
-        //out.println(f.toString()+"f..");
 
         int a = r.nextInt(4); //取值范围：[0,4)中的0/1/2/3,随机取运算符
         switch (a){         //0:加,1:减,2:乘,3:除
@@ -49,8 +48,6 @@ public class getExpression {
                 break;
             case 1:
                 //检查是否存在e1-e2<0的情况，如存在，应调换位置
-//                out.println(l+"测试");
-//                out.println(stringList+"测试");
                 l.add("-");l.add(f);
                 stringList.add("-");stringList.add(f.toString());
                 break;

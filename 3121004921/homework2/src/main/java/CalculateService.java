@@ -10,6 +10,39 @@ import java.util.Stack;
  */
 public class CalculateService {
     /**
+     * 中序转后序表达式的各种逻辑判断，将判断的结果送入toPostfix()进行各种情况的具体逻辑处理
+     *
+     * @param o
+     * @param number number栈
+     * @param action action栈
+     * @return 返回各种情况的symbol
+     */
+    public static int flag(Object o, Stack number, Stack<String> action) {
+        if (o instanceof Fraction)
+            return 1;// number
+        //是操作符
+        String s = (String)o;
+        if (s.matches("(\\+)|(\\-)|(\\×)|(\\÷)")) {
+            if (action.isEmpty()) {
+                return 2;// action为空
+            } else if (prior(s, action.peek())) {
+                return 3;// action不为空，操作符优先级高于栈顶操作符
+            } else {
+                return 4;// action不为空，操作符优先级不高于栈顶操作符
+            }
+
+        }
+        if (s.matches("\\("))
+            return 5;// 左括号
+        if (s.matches("\\)"))
+            return 6;// 右括号
+        //都不是
+        return 0;
+
+    }
+
+
+    /**
      * 中序变为后序
      * @param list
      * @return
@@ -17,10 +50,10 @@ public class CalculateService {
     public static Stack toPostFix(List list){
         Stack num = new Stack();
         Stack<String> action = new Stack<>();
-        int symble = 0;
+        int op = 0;
         for (Object o : list) {
-            symble = flag(o, num, action);
-            switch (symble) {
+            op = flag(o, num, action);
+            switch (op) {
                 case 1://数字直接入栈
                     num.push(o);
                     break;
@@ -66,37 +99,7 @@ public class CalculateService {
         }
         return temp;
     }
-    /**
-     * 中序转后序表达式的各种逻辑判断，将判断的结果送入toPostfix()进行各种情况的具体逻辑处理
-     *
-     * @param o
-     * @param number number栈
-     * @param action action栈
-     * @return 返回各种情况的symbol
-     */
-    public static int flag(Object o, Stack number, Stack<String> action) {
-        if (o instanceof Fraction)
-            return 1;// number
-        //是操作符
-        String s = (String)o;
-        if (s.matches("(\\+)|(\\-)|(\\×)|(\\÷)")) {
-            if (action.isEmpty()) {
-                return 2;// action为空
-            } else if (prior(s, action.peek())) {
-                return 3;// action不为空，操作符优先级高于栈顶操作符
-            } else {
-                return 4;// action不为空，操作符优先级不高于栈顶操作符
-            }
 
-        }
-        if (s.matches("\\("))
-            return 5;// 左括号
-        if (s.matches("\\)"))
-            return 6;// 右括号
-        //都不是
-        return 0;
-
-    }
 
     /**
      * 判断操作符和栈顶操作符的优先级
@@ -135,7 +138,7 @@ public class CalculateService {
                     case "-":
                         Fraction fraction = b.sub(a);
                         //TODO 可以改为抛出减法异常
-                        if(fraction.getNominator()<=0||fraction.getDenominator()<=0){
+                        if(fraction.getNom()<=0||fraction.getDom()<=0){
                             return null;
                         }
                         newStack.push(fraction);//计算结果并压栈，注意顺序
