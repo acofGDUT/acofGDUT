@@ -23,7 +23,7 @@ public class getExpression {
 
         l.add(f1);
         stringList.add(f1.toString());
-        int a = r.nextInt(3); // [0,3),取值为0/1/2,随机生成运算符个数
+        int a = r.nextInt(3);
         do{
             express(e,l,stringList,limit);
             a--;
